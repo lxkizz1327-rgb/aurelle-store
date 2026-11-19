@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Fallback colours. The real values come from src/data/site-config.ts */
+  --c-primary: #1f1b18;
+  --c-on-primary: #ffffff;
+  --c-secondary: #efe7dc;
+  --c-accent: #b5654a;
+  --c-background: #faf8f5;
+  --c-surface: #ffffff;
+  --c-text: #2b2622;
+  --c-muted: #7a7168;
+  --c-border: #e5ded4;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--c-background);
+    color: var(--c-text);
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading), Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  :focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--c-accent);
+    color: #fff;
+  }
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1320px] px-5 md:px-8;
+  }
+  .section-y {
+    @apply py-16 md:py-24;
+  }
+  .eyebrow {
+    @apply mb-3 block text-[11px] font-medium uppercase tracking-[0.22em] text-accent;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 border px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.16em] transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply border-primary bg-primary text-on-primary hover:border-accent hover:bg-accent;
+  }
+  .btn-outline {
+    @apply border-primary bg-transparent text-primary hover:bg-primary hover:text-on-primary;
+  }
+  .btn-light {
+    @apply border-white bg-white text-black hover:bg-transparent hover:text-white;
+  }
+  .btn-ghost-light {
+    @apply border-white bg-transparent text-white hover:bg-white hover:text-black;
+  }
+  .field {
+    @apply w-full border border-line bg-surface px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-muted focus:border-primary;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-medium uppercase tracking-wider text-muted;
+  }
+  .link-underline {
+    @apply relative inline-block after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100;
+  }
+}
+
+/* Scroll-reveal animation (used by <Reveal>) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
